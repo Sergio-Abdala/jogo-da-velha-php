@@ -14,8 +14,7 @@ tempo de duração do jogo.*/
 		if (isset($_GET['nomedois'])) {
 			$nomedois = $_GET['nomedois'];
 		}else{ $nomedois = ""; }
-	//corpo do jogo
-		$venceu = "";//variavel onde sera armazenado caracter do vencedor
+	//corpo do jogo		
 		$resp[0]="";
 		for ($k=0; $k < 9; $k++) { 
 			if (isset($_GET['corpo'.$k]) && !empty($_GET['corpo'.$k])) {			
@@ -25,6 +24,7 @@ tempo de duração do jogo.*/
 			}else{ $resp[$k]=""; }
 		}
 		//condições de vitoria
+		$venceu = "";//variavel onde sera armazenado caracter do vencedor
 		// central
 			if ($_GET['corpo4'] == $_GET['corpo3'] && $_GET['corpo4'] == $_GET['corpo5'] || $_GET['corpo4'] == $_GET['corpo1'] && $_GET['corpo4'] == $_GET['corpo7'] || $_GET['corpo4'] == $_GET['corpo0'] && $_GET['corpo4'] == $_GET['corpo8'] || $_GET['corpo4'] == $_GET['corpo2'] && $_GET['corpo4'] == $_GET['corpo6']) {
 				$venceu = $_GET['corpo4'];
@@ -44,11 +44,9 @@ tempo de duração do jogo.*/
 		//baixo
 			if ($_GET['corpo7'] == $_GET['corpo6'] && $_GET['corpo7'] == $_GET['corpo8']) {
 				$venceu = $_GET['corpo7'];
-			}
-		
+			}		
 	//fim de jogo
 		if(!empty($venceu)){
-			//echo "<script>alert('".$venceu."');</script>";
 			if ($venceu == 'O') {
 				if (empty($_GET['nomeum'])) {
 					$_GET['nomeum'] = "Anonimo";
