@@ -5,12 +5,12 @@ quando houver empate ou um ganhador, informe a situação do final do jogo. Most
 tempo de duração do jogo.*/
 	//nomes 
 		if (isset($_GET['nomeum'])) { // se existir nome um
-			//passar todos os get do corpo do jogo pra caixa alta => letras maiúsculas uppercase...
+			//passar todos os get do corpo do jogo pra caixa alta facilita na comparação...
 			for ($i=0; $i < 9; $i++) { 
-				$_GET['corpo'.$i] = strtoupper($_GET['corpo'.$i]);
+				$_GET['corpo'.$i] = strtoupper($_GET['corpo'.$i]);// => letras maiúsculas uppercase 
 			}
-			$nomeum = $_GET['nomeum']; //variavel nome recebe get
-		}else{	$nomeum = ""; }//variavel nome recebe vazio, ñ existe no get...
+			$nomeum = $_GET['nomeum']; //variavel que armazena nome do jogador recebe get
+		}else{	$nomeum = ""; }//variavel nome recebe vazio, ñ existe o get...
 		if (isset($_GET['nomedois'])) {
 			$nomedois = $_GET['nomedois'];
 		}else{ $nomedois = ""; }
@@ -20,7 +20,7 @@ tempo de duração do jogo.*/
 			if (isset($_GET['corpo'.$k]) && !empty($_GET['corpo'.$k])) {			
 				if($_GET['corpo'.$k] == 'X' || $_GET['corpo'.$k] == 'O'){
 					$resp[$k] = $_GET['corpo'.$k];
-				}else{ $resp[$k] = ""; echo "<script>alert('caracter invalido use O ou X...');</script>"; }		
+				}else{ $resp[$k] = ""; echo "<script>alert('caracter invalido use O ou X...');</script>"; $_GET['corpo'.$k]=""; }	
 			}else{ $resp[$k]=""; }
 		}
 		//condições de vitoria
@@ -64,7 +64,7 @@ tempo de duração do jogo.*/
 		if(empty($venceu) && !empty($_GET['corpo0']) && !empty($_GET['corpo1']) && !empty($_GET['corpo2']) && !empty($_GET['corpo3']) && !empty($_GET['corpo4']) && !empty($_GET['corpo5']) && !empty($_GET['corpo6']) && !empty($_GET['corpo7']) && !empty($_GET['corpo8'])){
 			$fim = "Empate...";
 		}
-		/*/
+		/*/ guia rapido para enterder objeto DateTime
 			$data1 = new DateTime(Date('Y-m-d H:i:s'));
 			$data2 = new DateTime('2016-11-12 12:30:30');
 			$intervalo = $data1->diff( $data2 );
@@ -78,7 +78,7 @@ tempo de duração do jogo.*/
 			$tempo = "Duração do jogo: <small>".$difere->i." min e ".$difere->s." seg</small>";
 		}else{
 			setcookie('data', Date('Y-m-d H:i:s'),  time() + (86400 * 30), "/");
-			$tempo='00';
+			$tempo="Duração do jogo: <small>00 min e 00 seg</small>";
 		}
 ?>
 <!DOCTYPE html>
